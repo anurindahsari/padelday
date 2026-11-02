@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Layar · Turnamen Padel DPC Surabaya</title>
+<title>Layar · Hiswana Padel Day</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,800;1,900&amp;family=Plus+Jakarta+Sans:wght@500;700;800&amp;display=swap">
 <style>
 html,body{margin:0;height:100%;overflow:hidden}*{box-sizing:border-box}
@@ -72,8 +72,8 @@ i.fx{font-style:italic}
 </style>
 </head>
 <body>
-<div class="top"><img src="logo.png" alt=""><div class="t"><span>Hiswana Migas DPC Surabaya</span><b>Turnamen Padel DPC Surabaya</b></div><div class="clock" id="clk"></div></div>
-<div class="main" id="main"><div class="empty"><b>Turnamen Padel<span>DPC Surabaya</span></b><p>Memuat...</p></div></div>
+<div class="top"><img src="logo.png" alt=""><div class="t"><span>Hiswana Migas DPC Surabaya</span><b>Hiswana Padel Day</b></div><div class="clock" id="clk"></div></div>
+<div class="main" id="main"><div class="empty"><b>Hiswana<span>Padel Day</span></b><p>Memuat...</p></div></div>
 <div class="foot" id="foot"></div>
 <div id="dp"><div class="l">Pemenang <i class="fx">doorprize</i></div><div class="n" id="dpN"></div><div class="d" id="dpD"></div><div class="h" id="dpH"></div></div>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -95,7 +95,7 @@ function nm(id,short){ return U&&id?esc(TUR.pairName(U,id,short)):''; }
 function dpc(id){ return U&&id&&U.pairs[id]?esc(U.pairs[id].dpc):''; }
 function tag(m){ return TUR.KN[m.k]+' · '+(m.st=='G'?'Grup '+TUR.gname(m.gr):TUR.STN[m.st]); }
 function render(){ var m=CFG.layar||'live'; if(m!==mode){ mode=m; undT=0; } var el=$('main');
-  if(!U){ el.innerHTML='<div class="empty"><b>Turnamen Padel<span>DPC Surabaya</span></b><p>Jadwal pertandingan tampil setelah undian grup.</p></div>'; foot(); return; }
+  if(!U){ el.innerHTML='<div class="empty"><b>Hiswana<span>Padel Day</span></b><p>Jadwal pertandingan tampil setelah undian grup.</p></div>'; foot(); return; }
   if(mode=='undian') return undian(el); if(mode=='bagan') return bagan(el); if(mode=='mg') return mg(el); if(mode=='hasil') return hasil(el);
   live(el); foot(); }
 function live(el){ var R=TUR.resolve(U,S), h='<div class="ttl">Skor <i class="fx">live</i><small>Lapangan 1–'+TUR.COURTS+'</small></div><div class="courts">';
