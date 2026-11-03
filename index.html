@@ -314,6 +314,7 @@ h3{font-size:17px}
 /* formulir */
 .fm{border:0;border-radius:18px;background:#F6F9FC;padding:18px 16px 14px;margin-bottom:12px}
 .fm .hd{display:flex;align-items:center;gap:10px;font-size:19px;margin-bottom:12px}
+.fm .hd .opt.wjb{color:#B42318}
 .fm .hd .opt{font-family:"Plus Jakarta Sans",Arial,sans-serif;font-style:normal;font-weight:600;font-size:13px;color:#64748B;margin-left:auto}
 .stn{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#08203D;color:#DDF247;font-family:Archivo,Arial,sans-serif;font-style:normal;font-weight:800;font-size:14px}
 .fr{margin:0}
@@ -674,8 +675,8 @@ i.fx{font-style:italic}
     </div>
     <form id="form" onsubmit="return false" novalidate>
       <div class="fmi" id="fmiNew">Satu formulir untuk satu DPC, sekaligus semua kategori. Setelah terkirim, Anda mendapat kode untuk mengubah data dari HP mana pun sampai 10 Nov 2026, 23.59 WIB.</div>
-      <div class="fm"><div class="hd"><span class="stn">1</span>PIC DPC</div>
-        <div class="note" style="margin-top:0">PIC tidak harus peserta. PIC menjadi penghubung antara DPC dan panitia.</div>
+      <div class="fm"><div class="hd"><span class="stn">1</span>PIC DPC<i class="opt wjb">wajib diisi semua</i></div>
+        <div class="note" style="margin-top:0">PIC tidak harus peserta. PIC menjadi penghubung antara DPC dan panitia. Semua kolom di bagian ini wajib diisi dan tidak bisa dilewati.</div>
         <div class="fr">
           <div class="fc"><label class="fl" for="dpc">DPC</label><select class="in2" id="dpc" onchange="__dpcChk()"><option value="">Pilih DPC</option></select><span class="hint" id="e-dpc"></span></div>
           <div class="fc"><label class="fl" for="pic">Nama PIC</label><input class="in2" id="pic" maxlength="60" placeholder="Nama lengkap"><span class="hint" id="e-pic"></span></div>
@@ -683,13 +684,13 @@ i.fx{font-style:italic}
           <div class="fc"><label class="fl" for="em">Email DPC</label><input class="in2" id="em" maxlength="80" inputmode="email" placeholder="nama@email.com"><span class="hint" id="e-em"></span></div>
         </div>
       </div>
-      <div class="fm"><div class="hd"><span class="stn">2</span>Konfirmasi perwakilan</div>
-        <div class="small muted" style="margin-bottom:10px">Pilih <b>Ada</b> untuk kategori yang diikuti DPC Anda; kolom pendaftaran pasangan langsung muncul. 1 pasangan per kategori.</div>
+      <div class="fm"><div class="hd"><span class="stn">2</span>Konfirmasi perwakilan<i class="opt wjb">wajib diisi semua</i></div>
+        <div class="small muted" style="margin-bottom:10px">Setiap kategori wajib dijawab <b>Ada</b> atau <b>Tidak ada</b>. Pilih <b>Ada</b> untuk kategori yang diikuti DPC Anda; kolom pendaftaran pasangan langsung muncul dan semua isiannya wajib, kecuali link Reclub. 1 pasangan per kategori.</div>
         <div id="kats"></div>
         <span class="hint" id="e-kats"></span>
       </div>
       <div class="fm"><div class="hd"><span class="stn">3</span>Jumlah supporter per DPC</div>
-        <div class="small muted" style="margin-bottom:10px">Berapa orang yang akan hadir <b>di luar peserta</b>? Untuk perhitungan kapasitas lapangan dan konsumsi. Maksimal 10 orang; setiap orang mendapat barcode masuk atas namanya.</div>
+        <div class="small muted" style="margin-bottom:10px">Berapa orang yang akan hadir <b>di luar peserta</b>? Untuk perhitungan kapasitas lapangan dan konsumsi. Maksimal 10 orang. Tidak perlu mengisi nama: barcode supporter otomatis diberi nama DPC dan nomor urut, misalnya Surabaya 1, Surabaya 2, dan seterusnya.</div>
         <div class="fr"><div class="fc"><label class="fl" for="pdn">Jumlah supporter</label><select class="in2" id="pdn" onchange="__pdn()"><option value="">Pilih jumlah</option></select><span class="hint" id="e-pdn"></span></div></div>
         <div id="pdl" class="fr"></div>
       </div>
@@ -698,6 +699,7 @@ i.fx{font-style:italic}
         <textarea class="in2 ta" id="saran" maxlength="500" rows="4" placeholder="Tulis di sini (boleh dikosongkan)"></textarea>
         <span class="hint">Hanya dibaca panitia.</span>
       </div>
+      <div class="note">Ada perubahan setelah mendaftar? Data bisa diubah lewat tombol <b>Ubah data</b> dan kode ubah data DPC sampai <b>10 November 2026 pukul 23.59 WIB</b>.</div>
       <div id="fmsg"></div>
       <button type="button" class="btn nv" id="save" onclick="__save()">Daftar</button><button type="button" class="btn ln" id="cancel" onclick="__reset()" style="display:none">Batal ubah</button>
     </form>
@@ -3149,7 +3151,7 @@ var KAT=[['men','Men Beginner','Ganda putra'],['mix','Mix Beginner','1 putra + 1
   var PDV=[], KTAH='Format xx/xx/xx/xx/xxx (11 angka), boleh tanpa garis miring.', FFH='Wajib. Foto yang terlihat wajah; tidak harus pas foto.';
   function pdKeep(){ var n=PDV.length; for(var i=0;i<n;i++){ var e=$('pd'+i); if(e) PDV[i]=e.value; } }
   window.__pdn=function(keep){ pdKeep(); var n=parseInt($('pdn').value,10)||0, h=''; while(PDV.length<n) PDV.push('');
-    for(var i=0;i<n;i++) h+='<div class="fc"><label class="fl" for="pd'+i+'">Nama supporter '+(i+1)+'</label><input class="in2" id="pd'+i+'" maxlength="60" placeholder="Nama lengkap" value="'+esc(PDV[i]||'')+'"><span class="hint" id="e-pd'+i+'"></span></div>';
+    var dn=$('dpc').value||'DPC', lb=[]; for(var i=0;i<n;i++) lb.push(esc(dn)+' '+(i+1)); if(n) h='<div class="fc"><span class="hint">Nama di barcode supporter: <b>'+lb.join(', ')+'</b></span></div>';
     $('pdl').innerHTML=h; $('e-pdn').innerHTML=''; $('e-pdn').className='hint'; $('pdn').className='in2'; };
   function waN(w){ w=String(w||'').replace(/[^0-9]/g,''); if(w.indexOf('62')==0) w='0'+w.slice(2); return w; }
   function sha(t,cb){ try{ crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)).then(function(b){ var a=new Uint8Array(b), h=''; for(var i=0;i<a.length;i++) h+=(a[i]<16?'0':'')+a[i].toString(16); cb(h); },function(){ cb(''); }); }catch(e){ cb(''); } }
@@ -3174,7 +3176,7 @@ var KAT=[['men','Men Beginner','Ganda putra'],['mix','Mix Beginner','1 putra + 1
   function err(id,m){ var e=$('e-'+id); if(e){ e.innerHTML=m; e.className='hint err'; } var f=$(id); if(f&&f.className.indexOf('in2')>=0) f.className='in2 err'; return 1; }
   function clr(){ var els=document.querySelectorAll('#form .in2'); for(var i=0;i<els.length;i++) els[i].className='in2'; var hs=document.querySelectorAll('#form .hint.err'); for(i=0;i<hs.length;i++){ hs[i].className='hint'; if(/^e-(dpc|pic|wa|em|nm|pg|wp|ada|kats|pd)/.test(hs[i].id)) hs[i].innerHTML=''; if(/^e-kta/.test(hs[i].id)) hs[i].innerHTML=KTAH; if(/^e-rc/.test(hs[i].id)) hs[i].innerHTML='Opsional, bila punya.'; if(/^e-ff/.test(hs[i].id)) hs[i].innerHTML=FFH; } }
   function taken(d){ for(var i=0;i<ALL.length;i++) if(ALL[i].dpc==d&&(!EDIT||ALL[i].id!=EDIT.id)) return ALL[i]; return null; }
-  window.__dpcChk=function(){ var t=taken($('dpc').value); if(t){ err('dpc','DPC '+esc(t.dpc)+' sudah didaftarkan oleh '+esc(t.pic)+'. Untuk mengubah data, pakai tombol <b>Ubah data</b> dan kode ubah data DPC.'); } else { $('e-dpc').innerHTML=''; $('e-dpc').className='hint'; $('dpc').className='in2'; } };
+  window.__dpcChk=function(){ if($('pdn').value) __pdn(); var t=taken($('dpc').value); if(t){ err('dpc','DPC '+esc(t.dpc)+' sudah didaftarkan oleh '+esc(t.pic)+'. Untuk mengubah data, pakai tombol <b>Ubah data</b> dan kode ubah data DPC.'); } else { $('e-dpc').innerHTML=''; $('e-dpc').className='hint'; $('dpc').className='in2'; } };
   window.__save=function(){
     if(!open()){ toast('Pendaftaran sudah ditutup'); return; }
     clr(); var bad=0, dpc=$('dpc').value, pic=tr($('pic').value), wa=$('wa').value.replace(/[^0-9+]/g,''), em=tr($('em').value);
@@ -3200,7 +3202,7 @@ var KAT=[['men','Men Beginner','Ganda putra'],['mix','Mix Beginner','1 putra + 1
       pub.kat[k]={ada:true,p:P}; pv.kat[k]=V; }
     var pdn=$('pdn').value, PD={n:0,nama:[]};
     if(pdn===''){ bad+=err('pdn','Pilih jumlah supporter (pilih "Tidak ada supporter" bila tidak ada).'); }
-    else { pdKeep(); PD.n=parseInt(pdn,10); for(var q=0;q<PD.n;q++){ var pn=tr($('pd'+q).value); if(pn.length<3) bad+=err('pd'+q,'Isi nama supporter.'); PD.nama.push(pn); } }
+    else { pdKeep(); PD.n=parseInt(pdn,10); for(var q=0;q<PD.n;q++) PD.nama.push(dpc+' '+(q+1)); }
     pub.pd=PD;
     if(!bad&&!any){ $('e-kats').innerHTML='Pilih Ada pada minimal satu kategori.'; $('e-kats').className='hint err'; bad++; }
     if(bad){ $('fmsg').innerHTML='<div class="note warn">Periksa kembali '+bad+' isian yang ditandai merah.</div>'; return; }
