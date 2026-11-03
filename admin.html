@@ -37,10 +37,16 @@ select,input{font-family:inherit;font-size:13px;padding:7px 8px;border:1px solid
 .btn{border-radius:10px}
 select,input[type=text],input[type=search]{border-radius:10px}
 .box{border-radius:16px}
+#hd{position:relative;overflow:hidden;background:#D6EEFB;color:#0E2A47;border-bottom:2px solid #FFFFFF}
+#hd .in{position:relative;z-index:1}
+#hd span,#hd .r{color:#3A5670}
+#hd a{color:#0070B0}
+#hd .hb{position:absolute;right:-40px;top:-58px;width:150px;height:150px;opacity:.9}
+#hd:after{content:"";position:absolute;left:0;right:0;bottom:8px;height:2px;background:#FFFFFF;opacity:.8}
 </style>
 </head>
 <body>
-<div id="hd"><div class="in"><span class="r" id="who"></span><img class="lg" src="hiswana-putih.png" alt=""><b>Data pendaftaran</b><span>Turnamen Padel · khusus panitia</span></div></div>
+<div id="hd"><svg class="hb" aria-hidden="true" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#DFFF4F"/><path d="M16 16 C40 34 40 66 16 84 M84 16 C60 34 60 66 84 84" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/></svg><div class="in"><span class="r" id="who"></span><img class="lg" src="hiswana.png" alt=""><b>Data pendaftaran</b><span>Turnamen Padel · khusus panitia</span></div></div>
 <div class="wrap">
   <div class="box" id="login" style="display:none"><p>Masuk dengan akun Google panitia yang terdaftar untuk melihat nomor KTA dan mengelola data.</p><button class="btn" onclick="__login()">Masuk dengan Google</button><div id="lerr" style="color:#B42318;margin-top:8px"></div></div>
   <div id="app" style="display:none">
