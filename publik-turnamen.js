@@ -19,7 +19,7 @@
   function info(){ if(!CFG.tgl){ $('tlBig').innerHTML='Menyusul'; $('tlSm').innerHTML='Diumumkan bersamaan'; $('tlX').innerHTML=''; return; }
     var p=CFG.tgl.split('-'), d=new Date(+p[0],+p[1]-1,+p[2]);
     $('tlBig').innerHTML=d.getDate()+' '+BLN[d.getMonth()].slice(0,3)+' '+d.getFullYear();
-    $('tlSm').innerHTML=HARI[d.getDay()]+(CFG.jam?', registrasi ulang '+esc(CFG.jam.replace(':','.'))+' WIB':'')+(CFG.venue?'<br><b style="color:#08203D">'+esc(CFG.venue)+'</b>':'<br>Lokasi menyusul')+(CFG.alamat?'<br>'+esc(CFG.alamat):'');
+    $('tlSm').innerHTML=HARI[d.getDay()]+(CFG.jam?', registrasi ulang '+esc(CFG.jam.replace(':','.'))+' WIB':'')+(CFG.venue?'<br><b style="color:#0E2A47">'+esc(CFG.venue)+'</b>':'<br>Lokasi menyusul')+(CFG.alamat?'<br>'+esc(CFG.alamat):'');
     function cd(){ var now=new Date(), t0=new Date(now.getFullYear(),now.getMonth(),now.getDate()), n=Math.round((d-t0)/864e5), x='';
       if(n>0) x='<span class="cd">H-'+n+'</span>'; else if(n===0) x='<span class="cd">Hari ini!</span>';
       if(CFG.maps) x+=(x?' ':'')+'<a class="tlm" href="'+esc(CFG.maps)+'" target="_blank" rel="noopener">Buka di Google Maps &rarr;</a>';
